@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Festival de Cinema</title>
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    /* 🌗 Tema com variáveis */
+    :root {
+      --bg: #0c0c0c;
+      --text: #ffffff;
+      --accent: #FFD600;
+      --button-bg: #FFD600;
+      --button-text: #000;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --text: #000000;
+      --accent: #FF6D00;
+      --button-bg: #FF6D00;
+      --button-text: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--bg);
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    #toggle-theme {
+      background: none;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      padding: 0.5rem;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #toggle-theme:hover {
+      background-color: var(--accent);
+      color: var(--button-text);
+    }
+
+    .hero {
+      height: 90vh;
+      background: url('https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    .galeria img {
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem;
+      border-radius: 12px;
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #222;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬 Festival de Cinema</h1>
+    <button id="toggle-theme" aria-label="Alternar tema">🌓</button>
+  </header>
+
+  <div class="hero">
+    <h1>Explore o melhor do cinema independente</h1>
+  </div>
+
+  <section class="galeria">
+    <h2>Galeria</h2>
+    <p>Imagens de edições anteriores.</p>
+    <img src="https://source.unsplash.com/400x300/?cinema" alt="Cinema 1">
+    <img src="https://source.unsplash.com/400x300/?film" alt="Cinema 2">
+  </section>
+
+  <section class="programacao">
+    <h2>Programação</h2>
+    <p>De 20 a 25 de Julho | Sala CineArtes</p>
+    <ul>
+      <li><strong>20/07:</strong> Abertura + Filme “Horizontes”</li>
+      <li><strong>21/07:</strong> Mostra de curtas brasileiros</li>
+      <li><strong>22/07:</strong> Palestra com diretores convidados</li>
+      <li><strong>23 a 25/07:</strong> Exibições e votação popular</li>
+    </ul>
+  </section>
+
+  <section class="mapa">
+    <h2>Localização</h2>
+    <p>Sala CineArtes – Rua da Cultura, 123</p>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.485678824474!2d-46.65636118458055!3d-23.588034868292695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cd9b6b7c85%3A0x43efc3b3b6e6f8c0!2sCinearte!5e0!3m2!1spt-BR!2sbr!4v1623348074257!5m2!1spt-BR!2sbr" 
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Festival de Cinema Independente</p>
+  </footer>
+
+  <!-- 🌠 ScrollReveal -->
+  <script>
+    ScrollReveal().reveal('.hero', {
+      origin: 'top',
+      distance: '60px',
+      duration: 1200,
+      delay: 300
+    });
+
+    ScrollReveal().reveal('.galeria, .programacao, .mapa, footer', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1000,
+      delay: 200,
+      interval: 150
+    });
+  </script>
+
+  <!-- 🌙 Tema alternável -->
+  <script>
+    const toggleBtn = document.getElementById('toggle-theme');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>
